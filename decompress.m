@@ -15,6 +15,6 @@ function [img] = compress(originalImg, k) % aparentemente a compress faz o traba
   #aux = round((p-n)/2)             # valor auxiliar para manter a subimg no centro
   #lin_ini = aux; lin_fim = aux+n; col_ini = aux; col_fim = aux+n;
   #img = imagem(lin_ini:lin_fim, col_ini:col_fim, :);      # comprime
-  imwrite (uint8(img),"compressed.png", "Compression", "none"); # cria imagem comprimida
+  imwrite (uint8(img),"compressed.png", "Compression", "none"); # cria imagem comprimida (está saindo um grid B$W :(( )
 endfunction
 
