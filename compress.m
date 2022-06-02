@@ -1,12 +1,13 @@
 function compress(originalImg, k)
-  img = imread (originalImg); % lê a imagem original e transforma numa matriz
-  [linhas, colunas] = size(img)
-  % ajuste da imagem aqui
-  n = (p+k)/(1+k) % calcular tamanho n da nova matriz
-  
-  
-  lin_ini = 100; lin_fim = 150; col_ini = 100; col_fim = 150;
-  img = imread("lena.png", "PixelRegion", {[lin_ini lin_fim], [col_ini col_fim]});
-  imwrite (img, "compressed.png", "Compression", "none");
+  originalImg = imread(originalImg);
+  [p, colunas, rgb] = size(originalImg) # tamanho da imagem
+  n = floor((p+k)/(1+k)) # tamanho nxn (arredonda o n)
+  img = zeros(n, n, 3);
+  for x = 1: n;
+     for y = 1: n;
+       img(x, y, :) = originalImg((x-1)*(k+1)+1, (y-1)*(k+1)+1, :);
+     endfor
+  endfor
+  imwrite (uint8(img), "compressed.png", "Compression", "none"); # cria imagem comprimida
 endfunction
    
