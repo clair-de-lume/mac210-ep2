@@ -7,7 +7,7 @@ function compress(originalImg, k)
   img = zeros(n, n, 3);
   for x = 1: n;
      for y = 1: n;
-       img(x, y, :) = originalImg(x*(k+1), y*(k+1), :);
+       img(x, y, :) = originalImg(x*(k+1), y*(k+1), :); # tmb pode usar funçaõ mod(i,k+1) do octave
      endfor
   endfor
   #aux = round((p-n)/2)             # valor auxiliar para manter a subimg no centro
