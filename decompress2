@@ -1,0 +1,20 @@
+function decompress(compressedImg,k)
+  #colocar linhas na imagem
+
+  compressedImg = imread(compressedImg);
+  [n, colunas, rgb] = size(compressedImg);
+  p = n+(n-1)*k;
+  img = zeros(p, p, 3);
+  for x = 1: n;
+     for y = 1: n;
+       img((x-1)*(k+1)+1, (y-1)*(k+1)+1, :) = compressedImg(x,y,:);
+     endfor
+  endfor
+  imwrite (uint8(img), "decompressed.png", "Compression", "none"); # cria imagem comprimida
+
+  #if(method == "bilinear")
+  #bilinear
+  #else
+  #bicubico
+  #endif
+endfunction
