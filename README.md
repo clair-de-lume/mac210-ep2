@@ -66,7 +66,9 @@ rodar decompress com k = 7. Experimente alternativamente usar decompress três v
 três. Compare os resultados. Escreva no relatório suas conclusões.*
 
 ## A Selva
- 
+
+Aqui usamos uma imagem real (foto ou desenho) para testar o método de compressão (comprimir, descomprimir e calcular o erro).
+
 ### Conclusões
   
 <li>Funciona bem para imagens preto e branco?<li\>
