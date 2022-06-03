@@ -32,7 +32,7 @@ function decompress(compressedImg, method, k, h)
       endfor
     endfor
 
-  #bicubico
+  #bicubica
   else
     H = [1,0,0,0;1,h,h^2,h^3,;0,1,0,0;0,1,2*h,3*h^2];
     HT = H';                  #matriz transposta de H
@@ -43,32 +43,98 @@ function decompress(compressedImg, method, k, h)
 
         #precisamos calcular as derivadas abaixo:
 
-        #dy(x,y)
-        #dy(x,y+1)
-        #dy(x+1,y)
-        #dy(x+1,y+1)
+        #derivada primeira dy -> dy(x,y) = (f(x,y+1) - f(x,y-1))/2h
+        if(y == 1); #caso das bordas
+          #dy(x,y)
+          dy1 = (img(x,2,:) - img(x,1,:))/h;
+          #dy(x,y+1)
+          dy2 = (img(x,y+k+1+k+1,:) - img(x,y,:))/2*h;
+          #dy(x+1,y)
+          dy3 = (img(x+k+1,2,:) - img(x+k+1,1,:))/h;
+          #dy(x+1,y+1)
+          dy4 = (img(x+k+1,y+k+1+k+1,:) - img(x+k+1,y,:))/2*h;
+        elseif(y == p-1);
+          dy1 = 777;
+          dy2 = 777;
+          dy3 = 777;
+          dy4 = 777;
+        else;
+          #dy(x,y)
+          dy1 = (img(x,y+k+1,:) - img(x,y-k-1,:))/2*h;
+          #dy(x,y+1)
+          #dy2 = (img(x,y+k+1+k+1,:) - img(x,y,:))/2*h;
+          dy2 = 777;
+          #dy(x+1,y)
+          dy3 = (img(x+k+1,y+k+1,:) - img(x+k+1,y-k-1,:))/2*h;
+          #dy(x+1,y+1)
+          #dy4 = (img(x+k+1,y+k+1+k+1,:) - img(x+k+1,y,:))/2*h;
+          dy4 = 777;
+        endif
 
-        #dx(x,y)
-        #dx(x,y+1)
-        #dx(x+1,y)
-        #dx(x+1,y+1)
+        #derivada primeira dx - > dx(x,y) = (f(x+1,y) - f(x-1,y))/2h
+        if(x == 1);
+          dx1 = 777;
+          dx2 = 777;
+          dx3 = (img(x+k+1+k+1,y,:) - img(x,y,:))/2*h;
+          dx4 = (img(x+k+1+k+1,y+k+1,:) - img(x,y+k+1,:))/2*h;
+        elseif(x == p-1);
+          dx1 = 777;
+          dx2 = 777;
+          dx3 = 777;
+          dx4 = 777;
+        else;
+          #dx(x,y)
+          dx1 = (img(x+k+1,y,:) - img(x-k-1,y,:))/2*h;
+          #dx(x,y+1)
+          dx2 = (img(x+k+1,y+k+1,:) - img(x-k-1,y+k+1,:))/2*h;
+          #dx(x+1,y)
+          #dx3 = (img(x+k+1+k+1,y,:) - img(x,y,:))/2*h;
+          dx3 = 777;
+          #dx(x+1,y+1)
+          #dx4 = (img(x+k+1+k+1,y+k+1,:) - img(x,y+k+1,:))/2*h;
+          dx4 = 777;
+        endif
 
-        #dxdy(x,y)
-        #dxdy(x,y+1)
-        #dxdy(x+1,y)
-        #dxdy(x+1,y+1)
+        #derivada mista dxdy - > dxdy(x,y) = (dy(x+1,y) - dy(x-1,y))/2h
+        if(y == 1);
+          #valores aleatorios (teste)
+          dxdy1 = 777;
+          dxdy2 = 777;
+          dxdy3 = 777;
+          dxdy4 = 777;
+        elseif(y == p-1);
+          #valores aleatorios (teste)
+          dxdy1 = 777;
+          dxdy2 = 777;
+          dxdy3 = 777;
+          dxdy4 = 777;
+        else
+          #valores aleatorios (teste)
+          dxdy1 = 777;
+          dxdy2 = 777;
+          dxdy3 = 777;
+          dxdy4 = 777;
+
+          #dxdy(x,y)
+          #dxdy1 = (dy3 - ((img(x-k-1,y+k+1,:) - img(x-k-1,y-k-1,:))/2*h))/2*h;
+          #dxdy(x,y+1)
+          #dxdy2 = (dy4 - ((img(x-k-1,y+k+1+k+1,:) - img(x-k-1,y,:))/2*h))/2*h;
+          #dxdy(x+1,y)
+          #dxdy3 = (((img(x+k+1+k+1,y+k+1,:) - img(x+k+1+k+1,y-k-1,:))/2*h) - ((img(x,y+k+1,:) - img(x,y-k-1,:))/2*h))/2*h;
+          #dxdy(x+1,y+1)
+          #dxdy4 = (((img(x+k+1+k+1,y+k+1+k+1,:) - img(x+k+1+k+1,y+k+1,:))/2*h) - ((img(x,y+k+1+k+1,:) - img(x,y,:))/2*h))/2*h;
+        endif
 
         #adiciona os f's em F
         F(1,1,:) = img(x,y,:); F(1,2,:) = img(x,y+k+1,:); F(2,1,:) = img(x+k+1,y,:); F(2,2,:) = img(x+k+1,y+k+1,:);
         #adiciona os dy's em F
-        #F(1,3,:) = dy(x,y); F(1,4,:) = dy(x,y+1); F(2,3,:) = dy(x+1,y); F(2,4,:) = dy(x+1,y+1);
+        F(1,3,:) = dy1; F(1,4,:) = dy2; F(2,3,:) = dy3; F(2,4,:) = dy4;
         #adiciona os dx's em F
-        #F(3,1,:) = dx(x,y); F(3,2,:) = dx(x,y+1); F(4,1,:) = dx(x+1,y); F(4,2,:) = dx(x+1,y+1);
+        F(3,1,:) = dx1; F(3,2,:) = dx2; F(4,1,:) = dx3; F(4,2,:) = dx4;
         #adiciona os dxdy's em F
-        #F(3,3,:) = dxdy(x,y); F(3,4,:) = dxdy(x,y+1); F(4,3,:) = dxdy(x+1,y); F(4,4,:) = dxdy(x+1,y+1)
+        F(3,3,:) = dxdy1; F(3,4,:) = dxdy2; F(4,3,:) = dxdy3; F(4,4,:) = dxdy4;
 
         #sistema:
-
         #multiplicação da H com HT
         H = H*HT;
         #resolvendo o sitema
@@ -83,10 +149,14 @@ function decompress(compressedImg, method, k, h)
               #matriz de y na equação do polinomio
               Y = zeros(4,1,3);
               Y(1,:) = 1; Y(2,:) = (i-y); Y(3,:) = (i-y)^2; Y(4,:) = (i-y)^3;
+              #matriz de coeficientes para RGB
+              A1 = [A(1),A(2),A(3),A(4);A(5),A(6),A(7),A(8);A(9),A(10),A(11),A(12);A(13),A(14),A(15),A(16)];
+              A2 = [A(17),A(18),A(19),A(20);A(21),A(22),A(23),A(24);A(25),A(26),A(27),A(28);A(29),A(30),A(31),A(32)];
+              A3 = [A(33),A(34),A(35),A(36);A(37),A(38),A(39),A(40);A(41),A(42),A(43),A(44);A(45),A(46),A(47),A(48)];
               #polinomio
-              img(j,i,1) = (1*(j-x)*(j-x)^2*(j-x)^3)*A(:,:,1)*Y;
-              img(j,i,2) = (1*(j-x)*(j-x)^2*(j-x)^3)*A(:,:,2)*Y;
-              img(j,i,3) = (1*(j-x)*(j-x)^2*(j-x)^3)*A(:,:,3)*Y;
+              img(j,i,1) = [1,(j-x),(j-x)^2,(j-x)^3]*A1*Y(:,:,1);
+              img(j,i,2) = [1,(j-x),(j-x)^2,(j-x)^3]*A2*Y(:,:,2);
+              img(j,i,3) = [1,(j-x),(j-x)^2,(j-x)^3]*A3*Y(:,:,3);
             endif
           endfor
         endfor
