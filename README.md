@@ -34,7 +34,7 @@ $k$: número de linhas/colunas retiradas da matriz *originalImg* (taxa de compre
 
 Após a atualização da matriz *img* com os valores adequados, o programa lê os valores de *img* com tamanho de 8 bits (o que garante a cor em imagens coloridas) e transforma a matriz em uma imagem comprimida.
 
-## Teste para imagem 300x300
+## Teste da *compresss* para imagem 250x250
 ### Original:
 ![sailor](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor.png)
 
@@ -46,6 +46,19 @@ Após a atualização da matriz *img* com os valores adequados, o programa lê o
 
 ### Comprimida com k = 10
 ![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
+
+## Teste da *compresss* para imagem 1200x1200
+### Original:
+![nezuko](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko.jpg)
+
+### Comprimida com k = 10
+![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
+
+### Comprimida com k = 25
+![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
+
+### Comprimida com k = 100
+![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
 
 ## decompress
 
