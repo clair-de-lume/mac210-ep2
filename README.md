@@ -33,6 +33,20 @@ $(x,y, :)$: coordenadas do elemento de abscissa $x$ e ordenada $y$ da matriz *or
 $k$: número de linhas/colunas retiradas da matriz *originalImg* (taxa de compressão)
 
 Após a atualização da matriz *img* com os valores adequados, o programa lê os valores de *img* com tamanho de 8 bits (o que garante a cor em imagens coloridas) e transforma a matriz em uma imagem comprimida.
+
+## Teste para imagem 300x300
+### Original:
+![sailor](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor.png)
+
+### Comprimida com k = 1
+![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
+
+### Comprimida com k = 5
+![sailor5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor5.png)
+
+### Comprimida com k = 10
+![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
+
 ## decompress
 
 ~~~matlab
