@@ -82,4 +82,4 @@ Aqui usamos uma imagem real (foto ou desenho) para testar o método de compress�
 <li>Como o valor de h muda a interpolação?<li\>
 <li>Como se comporta o erro?<li\>
 
-[^1]: $$p=n+(n-1)k$$
+[^1]: $p=n+(n-1)k$
