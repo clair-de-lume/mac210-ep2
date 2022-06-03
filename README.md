@@ -1,10 +1,7 @@
 # Relatório do EP2 de MAC0210 (Laboratório de Métodos Numéricos)
-# Prof. Ernesto G. Birgin
-# Junho de 2022
+#### Prof. Ernesto G. Birgin - Junho de 2022
 
-### Alunas:
-### Luísa Menezes da Costa - nºUSP 12676491
-### Sabrina Araújo da Silva - nºUSP 12566182
+##### Alunas: Luísa Menezes da Costa - nºUSP 12676491 | Sabrina Araújo da Silva - nºUSP 12566182
 
 (pode arrumar a vontade oq eu euscrecvi se ficar ruim, n sou de humanas)
 
@@ -41,7 +38,9 @@ Após a atualização da matriz *img* com os valores adequados, o programa lê o
 ~~~matlab
  decompress(compressedImg, method, k, h)
 ~~~
-A função *decompress* recebe uma imagem em .png, uma constante *method*, $k$ e $h$. A imagem é transformada em uma matriz *compressedImg* de dimensões $linhas\times colunas\times 3$. Após a leitura da imagem, o número de linhas/colunas da matriz é armazenado em *p*. Utilizando a fórmula dada[^1], calculamos o novo lado $p$ da imagem a ser descomprimida. Depois, criamos uma matriz de valor $-1$[^2] *img* de dimensões $n\times n\times 3$, em que serão adicionados elementos da matriz *compressedImg*, sendo que entre cada linha/coluna irá existir uma linha/coluna composta exclusivamente de valor $-1$ (exceto antes das linhas/colunas de índice $1$ e depois das linhas/colunas de índice $n$) com elementos de *compressedImg* na nova matriz nula *img* conforme a seguinte fórmula:
+### Descompressão da imagem
+
+A função *decompress* recebe uma imagem em .png, uma constante *method*, $k$ e $h$. A imagem é transformada em uma matriz *compressedImg* de dimensões $linhas\times colunas\times 3$. Após a leitura da imagem, o número de linhas/colunas da matriz é armazenado em *p*. Utilizando a fórmula dada[^1], calculamos o novo lado $p$ da imagem a ser descomprimida. Depois, criamos uma matriz de valor $-1$[^2] *img* de dimensões $n\times n\times 3$, em que serão adicionados elementos da matriz *compressedImg* com elementos de *compressedImg* na nova matriz *img*, sendo que entre cada linha/coluna de *img* irá existir uma linha/coluna composta exclusivamente de valor $-1$ (exceto antes das linhas/colunas de índice $1$ e depois das linhas/colunas de índice $n$), conforme a seguinte fórmula:
 
 $$
 ((x-1)(k+1)+1, (y-1)(k+1)+1, :)=(x_i,y_j, :)
@@ -58,6 +57,36 @@ $k$: taxa de compressão
 Após a atualização da matriz *img* com os valores adequados, o programa lê os valores de *img* com tamanho de 8 bits (o que garante a cor em imagens coloridas) e transforma a matriz em uma imagem descomprimida.
 
 ###  Interpolação Bilinear Por Partes
+
+Se $method==1$, o método selecionado para interpolação será o bilinear. Para cada ponto $(x,y)$ a ser interpolado na matriz *img*, devemos calcular o valor $f(x, y) \approx p_{ij}(x, y) = a_0 + a_1(x − x_i) + a_2(y − y_j) + a_3(x − x_i)(y − y_j)$, de acordo com o seguinte sistema linear:
+
+$$
+F = H \times A
+$$
+
+$$
+\begin{bmatrix} 
+   f(x_i,y_j) \\
+   f(x_i,y_{j+1}) \\
+   f(x_{i+1},y_j) \\
+   f(x_{i+1},y_{j+1})
+\end{bmatrix} =
+\begin{bmatrix}
+   1\ 0\ 0\ 0 \\
+   1\ 0\ h\ 0 \\
+   1\ h\ 0\ 0 \\
+   1\ h\ h\ h^2
+\end{bmatrix}
+\begin{bmatrix}
+   a_0 \\
+   a_1 \\
+   a_2 \\
+   a_3
+ \end{bmatrix}
+$$
+
+A matriz F representa os pontos nas diagonais do ponto $(x,y)$ que receberá o valor interpolado. A matriz H é definida pelo $h$ inserido pelo usuário. A matriz A representa os valores a serem encontrados e utilizados no polinômio interpolador. Esse processo será feito simultaneamente para cada ponto $(x,y)$ do RGB; portanto, as matrizes $F$ e $A$ terão dimensões $4\times 1\times 3$. 
+
 
 é so ler aqui >> https://en.wikipedia.org/wiki/Bilinear_interpolation << e fazer n sei pq fica pedindo ep 
 to brincando prof n me reprova
