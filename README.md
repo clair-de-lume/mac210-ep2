@@ -21,6 +21,7 @@ fofinho da pra colocar coisa matematica q nem em latex
 ~~~matlab
 compress(originalImg, k)
 ~~~
+A função *compress* recebe uma imagem em .png e uma constante $k$. Após a leitura da imagem, o número de linhas/colunas é armazenado em *p*. Utilizando a fórmula dada[^1], calculamos o novo lado $n$ da imagem comprimida. Depois, criamos uma matriz nula $n\times n\times 3$, em que serão adicionados (percorrendo cada linha e cada coluna) apenas os elementos cujas linhas e colunas de índice $i$ 
 
 ## decompress
 
@@ -81,3 +82,4 @@ Aqui usamos uma imagem real (foto ou desenho) para testar o método de compress�
 <li>Como o valor de h muda a interpolação?<li\>
 <li>Como se comporta o erro?<li\>
 
+[^1]: $$p=n+(n-1)k$$
