@@ -1,6 +1,9 @@
-# EP2 - MAC0210 Laboratório de Métodos Numéricos
+# Relatório do EP2 de MAC0210 (Laboratório de Métodos Numéricos)
+# Prof. Ernesto G. Birgin
+# Junho de 2022
 
-### Luísa Menezes da Costa - nºUSP
+### Alunas:
+### Luísa Menezes da Costa - nºUSP 12676491
 ### Sabrina Araújo da Silva - nºUSP 12566182
 
 (pode arrumar a vontade oq eu euscrecvi se ficar ruim, n sou de humanas)
