@@ -21,8 +21,21 @@ fofinho da pra colocar coisa matematica q nem em latex
 ~~~matlab
 compress(originalImg, k)
 ~~~
-A função *compress* recebe uma imagem em .png e uma constante $k$. Após a leitura da imagem, o número de linhas/colunas é armazenado em *p*. Utilizando a fórmula dada[^1], calculamos o novo lado $n$ da imagem comprimida. Depois, criamos uma matriz nula $n\times n\times 3$, em que serão adicionados (percorrendo cada linha e cada coluna) apenas os elementos cujas linhas e colunas de índice $i$ 
+A função *compress* recebe uma imagem em .png e uma constante $k$. A imagem é transformada em uma matriz *originalImg* de dimensões $linhas\times colunas\times 3$. Após a leitura da imagem, o número de linhas/colunas da matriz é armazenado em *p*. Utilizando a fórmula dada[^1], calculamos o novo lado $n$ da imagem comprimida. Depois, criamos uma matriz nula *img* $n\times n\times 3$, em que serão adicionados elementos da matriz *originalImg* na nova matriz nula *img* conforme a seguinte fórmula:
 
+$$
+(x_i,y_j, :)=((x-1)(k+1)+1, (y-1)(k+1)+1, :)
+$$
+
+**Legenda:**
+
+$(x_i,y_j, :)$: coordenadas do elemento de abscissa $x_i$ e ordenada $y_j$ da matriz *img* no RGB
+
+$(x,y, :)$: coordenadas do elemento de abscissa $x$ e ordenada $y$ da matriz *originalImg* no RGB
+
+$k$: taxa de compressão
+
+Após a atualização da matriz *img* com os valores adequados, o programa lê os valores de *img* com tamanho de 8 bits (o que garante a cor em imagens coloridas) e transforma a matriz em uma imagem comprimida.
 ## decompress
 
 ~~~matlab
