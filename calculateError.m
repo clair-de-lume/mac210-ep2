@@ -8,6 +8,5 @@ function calculateError(originalImg, decompressedImg)
   errG = (norm(origG-decG))/(norm(origG));
   errB = (norm(origB-decB))/(norm(origB));
   
-  disp("Erro calculado:")
   disp((errR + errG + errB)/3);
 endfunction
