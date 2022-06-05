@@ -34,11 +34,11 @@ $k$: número de linhas/colunas retiradas da matriz *originalImg* (taxa de compre
 
 Após a atualização da matriz *img* com os valores adequados, o programa lê os valores de *img* com tamanho de 8 bits (o que garante a cor em imagens coloridas) e transforma a matriz em uma imagem comprimida.
 
-## Teste da *compresss* para imagem 250x250
+## Teste da *compresss* para "sailor.png" (dimensões: 250x250)
 ### Original:
 ![sailor](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor.png)
 
-### Comprimida com k = 1
+### Comprimida com k = 1 
 ![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
 
 ### Comprimida com k = 5
@@ -47,7 +47,7 @@ Após a atualização da matriz *img* com os valores adequados, o programa lê o
 ### Comprimida com k = 10
 ![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
 
-## Teste da *compresss* para imagem 1200x1200
+## Teste da *compresss* para "nezuko.jpg" (dimensões: 1200x1200)
 ### Original:
 ![nezuko](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko.jpg)
 
@@ -129,6 +129,12 @@ coisa de nerd
 ~~~
 
 a função que tamo achando que é facil mas *(NAO TO ZIKANDO)* quer ver q vai dar uns negocio loco
+
+A função *calculateError* lê as 6 matrizes correspondentes aos RGBs de *originalImg* e *decompressedImg* e calcula o erro, por meio da norma 2, entre a imagem original e a imagem que passou pelos processos de compressão, descompressão e interpolação. Para tanto, as matrizes originais, do tipo *uint8*, foram transformadas em tipo *double* (tipo suportado pela função embutida *norm* do Octave), sem alterações nos valores das matrizes.
+
+## Teste de *calculateError* para "sailor.png"
+
+### Original:
 
 ## O Zoológico
 
