@@ -34,28 +34,6 @@ $k$: número de linhas/colunas retiradas da matriz *originalImg* (taxa de compre
 
 Após a atualização da matriz *img* com os valores adequados, o programa lê os valores de *img* com tamanho de 8 bits (o que garante a cor em imagens coloridas) e transforma a matriz em uma imagem comprimida.
 
-## Teste da *compresss* para "sailor.png" (dimensões: 250x250)
-
-### Teste da *compresss* com k = 1 para "sailor.png"
-![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
-
-### Teste da *compresss* com k = 5 para "sailor.png"
-![sailor5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor5.png)
-
-### Teste da *compresss* com k = 10 para "sailor.png"
-![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
-
-## Teste da *compresss* para "nezuko.jpg" (dimensões: 1200x1200)
-
-### Teste da *compresss* com k = 10 para "nezuko.jpg"
-![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
-
-### Teste da *compresss* com k = 25 para "nezuko.jpg"
-![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
-
-### Teste da *compresss* com k = 10 para "nezuko.jpg"
-![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
-
 ## decompress
 
 ~~~matlab
@@ -128,22 +106,6 @@ A imagem *"sailor.png"* tem dimensões $250\times 250$ e após comprimida e desc
 
 A função *calculateError* só consegue calcular o erro entre matrizes de mesma dimensão. Assim, é impossível calcular o erro para *"sailor.png"* com $k=1$.
 
-## Teste de *calculateError* para *"bokunohero.jpg"* (dimensões: 399x399)
-
-Valores de $k$ para os quais $n \in \mathbb{N}$: 1, 198, 397
-
-<li>Comprimida e descomprimida com k=1 &rarr; Erro = 0.032252<li\>
-<li>Comprimida e descomprimida com k=198 &rarr; Erro = 1.1329<li\>
-<li>Comprimida e descomprimida com k=397 &rarr; Erro = 1.3415<li\>
-
-## Teste de *calculateError* para *"nezuko.jpg"* (dimensões: 1200x1200)
-
-Valores de $k$ para os quais $n \in \mathbb{N}$: 10, 108, 1198
-
-<li>Comprimida e descomprimida com k=10 &rarr; Erro = 0.5040<li\>
-<li>Comprimida e descomprimida com k=108 &rarr; Erro = 1.9473<li\>
-<li>Comprimida e descomprimida com k=1198 &rarr; Erro = 4.1383<li\>
-
 ## O Zoológico
 
 Aqui usamos uma função $ f:\mathbb{R}^2 \to \mathbb{R}^3  $ de classe $ C^2 $ para gerar uma imagem grande em RGB. Segue alguns dos testes:
@@ -170,6 +132,45 @@ três. Compare os resultados. Escreva no relatório suas conclusões.*
 ## A Selva
 
 Aqui usamos uma imagem real (foto ou desenho) para testar o método de compressão (comprimir, descomprimir e calcular o erro).
+   
+
+## Teste da *compresss* para "sailor.png" (dimensões: 250x250)
+
+### Teste da *compresss* com k = 1 para "sailor.png"
+![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
+
+### Teste da *compresss* com k = 5 para "sailor.png"
+![sailor5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor5.png)
+
+### Teste da *compresss* com k = 10 para "sailor.png"
+![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
+
+## Teste da *compresss* para "nezuko.jpg" (dimensões: 1200x1200)
+
+### Teste da *compresss* com k = 10 para "nezuko.jpg"
+![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
+
+### Teste da *compresss* com k = 25 para "nezuko.jpg"
+![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
+
+### Teste da *compresss* com k = 10 para "nezuko.jpg"
+![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
+   
+## Teste de *calculateError* para *"bokunohero.jpg"* (dimensões: 399x399)
+
+Valores de $k$ para os quais $n \in \mathbb{N}$: 1, 198, 397
+
+<li>Comprimida e descomprimida com k=1 &rarr; Erro = 0.032252<li\>
+<li>Comprimida e descomprimida com k=198 &rarr; Erro = 1.1329<li\>
+<li>Comprimida e descomprimida com k=397 &rarr; Erro = 1.3415<li\>
+
+## Teste de *calculateError* para *"nezuko.jpg"* (dimensões: 1200x1200)
+
+Valores de $k$ para os quais $n \in \mathbb{N}$: 10, 108, 1198
+
+<li>Comprimida e descomprimida com k=10 &rarr; Erro = 0.5040<li\>
+<li>Comprimida e descomprimida com k=108 &rarr; Erro = 1.9473<li\>
+<li>Comprimida e descomprimida com k=1198 &rarr; Erro = 4.1383<li\>
 
 ### Conclusões
   
