@@ -34,28 +34,6 @@ $k$: número de linhas/colunas retiradas da matriz *originalImg* (taxa de compre
 
 Após a atualização da matriz *img* com os valores adequados, o programa lê os valores de *img* com tamanho de 8 bits (o que garante a cor em imagens coloridas) e transforma a matriz em uma imagem comprimida.
 
-## Teste da *compresss* para "sailor.png" (dimensões: 250x250)
-
-### Teste da *compresss* com k = 1 para "sailor.png"
-![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
-
-### Teste da *compresss* com k = 5 para "sailor.png"
-![sailor5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor5.png)
-
-### Teste da *compresss* com k = 10 para "sailor.png"
-![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
-
-## Teste da *compresss* para "nezuko.jpg" (dimensões: 1200x1200)
-
-### Teste da *compresss* com k = 10 para "nezuko.jpg"
-![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
-
-### Teste da *compresss* com k = 25 para "nezuko.jpg"
-![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
-
-### Teste da *compresss* com k = 10 para "nezuko.jpg"
-![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
-
 ## decompress
 
 ~~~matlab
@@ -122,6 +100,57 @@ coisa de nerd
 
 A função *calculateError* lê as 6 matrizes correspondentes aos RGBs de *originalImg* e *decompressedImg* e calcula o erro, por meio da norma 2, entre a imagem original e a imagem que passou pelos processos de compressão, descompressão e interpolação. Para tanto, as matrizes originais, do tipo *uint8*, foram transformadas em tipo *double* (tipo suportado pela função embutida *norm* do Octave), sem alterações nos valores das matrizes.
 
+## O Zoológico
+
+Aqui usamos uma função $ f:\mathbb{R}^2 \to \mathbb{R}^3  $ de classe $ C^2 $ para gerar uma imagem grande em RGB. Segue alguns dos testes:
+
+### Teste 1.
+
+$$ f(x, y) = (sen(x),\frac{sen(y) + sen(x)}{2} , sen(x)) $$
+
+* Funciona bem para imagens preto e branco?
+* Funciona bem para imagens coloridas?
+* Funciona bem para todas as funções de classe $C^2$?
+* E para funções que não são de classe $C^2$?
+* Como o valor de $h$ muda a interpolação?
+* Como se comporta o erro?
+
+Responda também a esta questão:
+Considere uma imagem de tamanho $p^2$. Comprima-a com k = 7. Para obter a descompressão, podemos
+rodar decompress com k = 7. Experimente alternativamente usar decompress três vezes com k = 1 nas
+três. Compare os resultados. Escreva no relatório suas conclusões.
+
+## A Selva
+
+Aqui usamos uma imagem real (foto ou desenho) para testar o método de compressão (comprimir, descomprimir e calcular o erro).
+
+* Funciona bem para imagens preto e branco?
+* Funciona bem para imagens coloridas?
+* Como o valor de $h$ muda a interpolação?
+* Como se comporta o erro?
+
+## Teste da *compresss* para "sailor.png" (dimensões: 250x250)
+
+### Teste da *compresss* com k = 1 para "sailor.png"
+![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
+
+### Teste da *compresss* com k = 5 para "sailor.png"
+![sailor5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor5.png)
+
+### Teste da *compresss* com k = 10 para "sailor.png"
+![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
+
+## Teste da *compresss* para "nezuko.jpg" (dimensões: 1200x1200)
+
+### Teste da *compresss* com k = 10 para "nezuko.jpg"
+![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
+
+### Teste da *compresss* com k = 25 para "nezuko.jpg"
+![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
+
+### Teste da *compresss* com k = 10 para "nezuko.jpg"
+![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
+
 ## Teste de *calculateError* para *"sailor.png"* (dimensões: 250x250)
 
 A imagem *"sailor.png"* tem dimensões $250\times 250$ e após comprimida e descomprimida com $k=1$, fica com dimensões $249\times 249$. Isso acontece pois, para $p=250$ e $k=1$, o $n$ calculado será $125.5$, ou seja, não inteiro. Logo, esse valor de $n$ faz com que a imagem descomprimida tenha dimensões diferentes da imagem original. 
@@ -143,42 +172,6 @@ Valores de $k$ para os quais $n \in \mathbb{N}$: 10, 108, 1198
 <li>Comprimida e descomprimida com k=10 &rarr; Erro = 0.5040<li\>
 <li>Comprimida e descomprimida com k=108 &rarr; Erro = 1.9473<li\>
 <li>Comprimida e descomprimida com k=1198 &rarr; Erro = 4.1383<li\>
-
-## O Zoológico
-
-Aqui usamos uma função $ f:\mathbb{R}^2 \to \mathbb{R}^3  $ de classe $ C^2 $ para gerar uma imagem grande em RGB. Segue alguns dos testes:
-
-### Teste 1.
-
-$$ f(x, y) = (sen(x),\frac{sen(y) + sen(x)}{2} , sen(x)) $$
-
-### Conclusões
-
-<li>Funciona bem para imagens preto e branco?<li\>
-<li>Funciona bem para imagens coloridas?<li\>
-<li>Funciona bem para todas as funções de classe C2?<li\>
-<li>E para funções que não são de classe C2?<li\>
-<li>Como o valor de h muda a interpolação?<li\>
-<li>Como se comporta o erro?<li\>
- 
-<li>Responder também:<li\>
-  
-*Considere uma imagem de tamanho p2. Comprima-a com k = 7. Para obter a descompressão, podemos
-rodar decompress com k = 7. Experimente alternativamente usar decompress três vezes com k = 1 nas
-três. Compare os resultados. Escreva no relatório suas conclusões.*
-
-## A Selva
-
-Aqui usamos uma imagem real (foto ou desenho) para testar o método de compressão (comprimir, descomprimir e calcular o erro).
-
-### Conclusões
-  
-<li>Funciona bem para imagens preto e branco?<li\>
-<li>Funciona bem para imagens coloridas?<li\>
-<li>Funciona bem para todas as funções de classe C2?<li\>
-<li>E para funções que não são de classe C2?<li\>
-<li>Como o valor de h muda a interpolação?<li\>
-<li>Como se comporta o erro?<li\>
 
 [^1]: $p=n+(n-1)k$
 [^2]: Os valores da matriz são todos iguais a $-1$ para facilitar o processo de interpolação: o sistema RGB é representado por números de 0 até 255; logo, os pontos a serem interpolados não podem estar nesse intervalo para evitar interpolações desnecessárias.
