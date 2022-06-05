@@ -35,29 +35,25 @@ $k$: número de linhas/colunas retiradas da matriz *originalImg* (taxa de compre
 Após a atualização da matriz *img* com os valores adequados, o programa lê os valores de *img* com tamanho de 8 bits (o que garante a cor em imagens coloridas) e transforma a matriz em uma imagem comprimida.
 
 ## Teste da *compresss* para "sailor.png" (dimensões: 250x250)
-### Original:
-![sailor](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor.png)
 
-### Comprimida com k = 1 
+### Teste da *compresss* com k = 1 para "sailor.png"
 ![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
 
-### Comprimida com k = 5
+### Teste da *compresss* com k = 5 para "sailor.png"
 ![sailor5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor5.png)
 
-### Comprimida com k = 10
+### Teste da *compresss* com k = 10 para "sailor.png"
 ![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
 
 ## Teste da *compresss* para "nezuko.jpg" (dimensões: 1200x1200)
-### Original:
-![nezuko](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko.jpg)
 
-### Comprimida com k = 10
+### Teste da *compresss* com k = 10 para "nezuko.jpg"
 ![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
 
-### Comprimida com k = 25
+### Teste da *compresss* com k = 25 para "nezuko.jpg"
 ![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
 
-### Comprimida com k = 100
+### Teste da *compresss* com k = 10 para "nezuko.jpg"
 ![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
 
 ## decompress
@@ -114,10 +110,6 @@ $$
 
 A matriz F representa os pontos nas diagonais do ponto $(x,y)$ que receberá o valor interpolado. A matriz H é definida pelo $h$ inserido pelo usuário. A matriz A representa os valores a serem encontrados e utilizados no polinômio interpolador. Esse processo será feito simultaneamente para cada ponto $(x,y)$ do RGB; portanto, as matrizes $F$ e $A$ terão dimensões $4\times 1\times 3$.
 
-
-é so ler aqui >> https://en.wikipedia.org/wiki/Bilinear_interpolation << e fazer n sei pq fica pedindo ep 
-to brincando prof n me reprova
-
 ###  Interpolação Bicubica
 
 coisa de nerd
@@ -128,13 +120,29 @@ coisa de nerd
  calculateError(originalImg, decompressedImg)
 ~~~
 
-a função que tamo achando que é facil mas *(NAO TO ZIKANDO)* quer ver q vai dar uns negocio loco
-
 A função *calculateError* lê as 6 matrizes correspondentes aos RGBs de *originalImg* e *decompressedImg* e calcula o erro, por meio da norma 2, entre a imagem original e a imagem que passou pelos processos de compressão, descompressão e interpolação. Para tanto, as matrizes originais, do tipo *uint8*, foram transformadas em tipo *double* (tipo suportado pela função embutida *norm* do Octave), sem alterações nos valores das matrizes.
 
-## Teste de *calculateError* para "sailor.png"
+## Teste de *calculateError* para *"sailor.png"* (dimensões: 250x250)
 
-### Original:
+A imagem *"sailor.png"* tem dimensões $250\times 250$ e após comprimida e descomprimida com $k=1$, fica com dimensões $249\times 249$. Isso acontece pois, para $p=250$ e $k=1$, o $n$ calculado será $125.5$, ou seja, não inteiro. Logo, esse valor de $n$ faz com que a imagem descomprimida tenha dimensões diferentes da imagem original. 
+
+A função *calculateError* só consegue calcular o erro entre matrizes de mesma dimensão. Assim, é impossível calcular o erro para *"sailor.png"* com $k=1$.
+
+## Teste de *calculateError* para *"bokunohero.jpg"* (dimensões: 399x399)
+
+Valores de $k$ para os quais $n \in \mathbb{N}$: 1, 198, 397
+
+<li>Comprimida e descomprimida com k=1 &rarr; Erro = 0.032252<li\>
+<li>Comprimida e descomprimida com k=198 &rarr; Erro = 1.1329<li\>
+<li>Comprimida e descomprimida com k=397 &rarr; Erro = 1.3415<li\>
+
+## Teste de *calculateError* para *"nezuko.jpg"* (dimensões: 1200x1200)
+
+Valores de $k$ para os quais $n \in \mathbb{N}$: 10, 108, 1198
+
+<li>Comprimida e descomprimida com k=10 &rarr; Erro = 0.5040<li\>
+<li>Comprimida e descomprimida com k=108 &rarr; Erro = 1.9473<li\>
+<li>Comprimida e descomprimida com k=1198 &rarr; Erro = 4.1383<li\>
 
 ## O Zoológico
 
