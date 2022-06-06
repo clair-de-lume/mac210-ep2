@@ -10,7 +10,6 @@ function decompress(compressedImg, method, k, h)
        img((x-1)*(k+1)+1, (y-1)*(k+1)+1, :) = compressedImg(x,y,:);
      endfor
   endfor
-  imwrite (uint8(img), "linhas.png", "Compression", "none");
 
   #bilinear
   if(method == "bilinear")
@@ -143,4 +142,3 @@ function result = dxdy(img, x, y, h, k, p)
     result = ( dy(img, x-k-1, y, h, k, p) - dy(img, x+k+1, y, h, k, p) )/2*h;
   endif
 endfunction
-
