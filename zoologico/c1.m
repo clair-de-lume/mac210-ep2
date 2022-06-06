@@ -1,4 +1,4 @@
-function imagem3()
+function c1()
   p = 500;
   A = ones(p, p, 3);
 
