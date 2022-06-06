@@ -3,16 +3,6 @@
 
 ##### Alunas: Luísa Menezes da Costa - nºUSP 12676491 | Sabrina Araújo da Silva - nºUSP 12566182
 
-(pode arrumar a vontade oq eu euscrecvi se ficar ruim, n sou de humanas)
-
-teste
-
-$$
-   f(x,y) = \sin(x+y)
-$$
-
-fofinho da pra colocar coisa matematica q nem em latex
-
 ## compress
 
 ~~~matlab
@@ -126,52 +116,103 @@ Aqui usamos uma imagem real (foto ou desenho) para testar o método de compress�
 
 * Funciona bem para imagens preto e branco?
 * Funciona bem para imagens coloridas?
-* Como o valor de $h$ muda a interpolação?
+* **Como o valor de $h$ muda a interpolação?** Quanto maior o $h$, mais nítida ficam as imagens interpoladas.
 * Como se comporta o erro?
 
-## Teste da *compresss* para "sailor.png" (dimensões: 250x250)
+## Teste para "sailor.png" (dimensões: 250x250)
 
-### Teste da *compresss* com k = 1 para "sailor.png"
+### Original
+
+![sailor](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor.png)
+
+### *compress* com k = 1
 ![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
 
-### Teste da *compresss* com k = 5 para "sailor.png"
+### *compress* com k = 5
 ![sailor5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor5.png)
 
-### Teste da *compresss* com k = 10 para "sailor.png"
+### *compress* com k = 10
 ![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
 
-## Teste da *compresss* para "nezuko.jpg" (dimensões: 1200x1200)
+### *decompress* com k = 1, método bilinear e h = 1
+![d_hanako1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor/d_sailor1.png)
 
-### Teste da *compresss* com k = 10 para "nezuko.jpg"
-![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
+### *decompress* com k = 5, método bilinear e h = 1
+![d_hanako5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor/d_sailor5.png)
 
-### Teste da *compresss* com k = 25 para "nezuko.jpg"
-![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
+### *decompress* com k = 10, método bilinear e h = 1
+![d_hanako15](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor/d_sailor15.png)
 
-### Teste da *compresss* com k = 10 para "nezuko.jpg"
-![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
-
-## Teste de *calculateError* para *"sailor.png"* (dimensões: 250x250)
+### *calculateError*
 
 A imagem *"sailor.png"* tem dimensões $250\times 250$ e após comprimida e descomprimida com $k=1$, fica com dimensões $249\times 249$. Isso acontece pois, para $p=250$ e $k=1$, o $n$ calculado será $125.5$, ou seja, não inteiro. Logo, esse valor de $n$ faz com que a imagem descomprimida tenha dimensões diferentes da imagem original. 
 
 A função *calculateError* só consegue calcular o erro entre matrizes de mesma dimensão. Assim, é impossível calcular o erro para *"sailor.png"* com $k=1$.
 
-## Teste de *calculateError* para *"bokunohero.jpg"* (dimensões: 399x399)
+## Teste para "hanako.jpg" (dimensões: 433x433)
+
+### Original
+
+![hanako](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/hanako.jpg)
+
+### *compress* com k = 5
+![hanako5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/c_hanako5.png)
+
+### *compress* com k = 15
+![hanako15](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/c_hanako15.png)
+
+### *compress* com k = 35
+![hanako35](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/c_hanako35.png)
+
+### *decompress* com k = 5, método bilinear e h = 1
+![hanako5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/d_hanako5.png)
+
+### *decompress* com k = 15, método bilinear e h = 1
+![hanako15](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/d_hanako15.png)
+
+### *decompress* com k = 35, método bilinear e h = 1
+![hanako35](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/d_hanako35.png)
+
+### *calculateError*
+
+(Todos os valores de $k$ foram escolhidos de forma que $n \in \mathbb{N}$.)
+
+* Comprimida e descomprimida com k=5 &rarr; Erro = 0.2727
+* Comprimida e descomprimida com k=15 &rarr; Erro = 0.6539
+* Comprimida e descomprimida com k=35 &rarr; Erro = 0.9531
+
+## Teste para "nezuko.jpg" (dimensões: 1200x1200)
+
+### Original
+
+![sailor](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko.jpg)
+
+### *compress* com k = 10
+![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
+
+### *compress* com k = 25
+![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
+
+### *compress* com k = 10
+![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
+
+### *calculateError*
+
+(Todos os valores de $k$ foram escolhidos de forma que $n \in \mathbb{N}$.)
+
+* Comprimida e descomprimida com k=10 &rarr; Erro = 0.5040
+* Comprimida e descomprimida com k=108 &rarr; Erro = 1.9473
+* Comprimida e descomprimida com k=1198 &rarr; Erro = 4.1383
+
+## Teste para "bokunohero.jpg" (dimensões: 399x399)
+
+### *calculateError* 
 
 Valores de $k$ para os quais $n \in \mathbb{N}$: 1, 198, 397
 
-<li>Comprimida e descomprimida com k=1 &rarr; Erro = 0.032252<li\>
-<li>Comprimida e descomprimida com k=198 &rarr; Erro = 1.1329<li\>
-<li>Comprimida e descomprimida com k=397 &rarr; Erro = 1.3415<li\>
-
-## Teste de *calculateError* para *"nezuko.jpg"* (dimensões: 1200x1200)
-
-Valores de $k$ para os quais $n \in \mathbb{N}$: 10, 108, 1198
-
-<li>Comprimida e descomprimida com k=10 &rarr; Erro = 0.5040<li\>
-<li>Comprimida e descomprimida com k=108 &rarr; Erro = 1.9473<li\>
-<li>Comprimida e descomprimida com k=1198 &rarr; Erro = 4.1383<li\>
+* Comprimida e descomprimida com k=1 &rarr; Erro = 0.032252
+* Comprimida e descomprimida com k=198 &rarr; Erro = 1.1329
+* Comprimida e descomprimida com k=397 &rarr; Erro = 1.3415
 
 [^1]: $p=n+(n-1)k$
 [^2]: Os valores da matriz são todos iguais a $-1$ para facilitar o processo de interpolação: o sistema RGB é representado por números de 0 até 255; logo, os pontos a serem interpolados não podem estar nesse intervalo para evitar interpolações desnecessárias.
