@@ -104,9 +104,8 @@ $$ f(x, y) = (sen(x),\frac{sen(y) + sen(x)}{2} , sen(x)) $$
 * E para funções que não são de classe $C^2$?
 * Como o valor de $h$ muda a interpolação?
 * Como se comporta o erro?
-
-Responda também a esta questão:
-Considere uma imagem de tamanho $p^2$. Comprima-a com k = 7. Para obter a descompressão, podemos rodar decompress com k = 7. Experimente alternativamente usar decompress três vezes com k = 1 nas três. Compare os resultados. Escreva no relatório suas conclusões.
+* 
+## Considere uma imagem de tamanho $p^2$. Comprima-a com k = 7. Para obter a descompressão, podemos rodar decompress com k = 7. Experimente alternativamente usar decompress três vezes com k = 1 nas três. Compare os resultados. Escreva no relatório suas conclusões.
 
 ### *compress* com k = 7
 ![ce1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/experimentos/compressed_e1.png)
@@ -116,6 +115,12 @@ Considere uma imagem de tamanho $p^2$. Comprima-a com k = 7. Para obter a descom
 
 ### *decompress* três vezes com k = 1, método bilinear e h = 2
 ![de2](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/experimentos/decompressed_e2.png)
+
+### *decompress* uma vezes com k = 7, método bicúbico e h = 2
+![de1bc](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/experimentos/d_ex1_bc.png)
+
+### *decompress* três vezes com k = 1, método bicúbico e h = 2
+![de2bc](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/experimentos/d_ex2_bc.png)
 
 ## A Selva
 
