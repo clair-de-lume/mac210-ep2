@@ -1,4 +1,4 @@
-function imagem5()
+function peb()
   p = 500;
   A = ones(p, p, 3);
   k = 2.069e-3;
