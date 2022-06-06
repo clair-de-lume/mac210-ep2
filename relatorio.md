@@ -3,16 +3,6 @@
 
 ##### Alunas: Luísa Menezes da Costa - nºUSP 12676491 | Sabrina Araújo da Silva - nºUSP 12566182
 
-(pode arrumar a vontade oq eu euscrecvi se ficar ruim, n sou de humanas)
-
-teste
-
-$$
-   f(x,y) = \sin(x+y)
-$$
-
-fofinho da pra colocar coisa matematica q nem em latex
-
 ## compress
 
 ~~~matlab
@@ -33,28 +23,6 @@ $(x,y, :)$: coordenadas do elemento de abscissa $x$ e ordenada $y$ da matriz *or
 $k$: número de linhas/colunas retiradas da matriz *originalImg* (taxa de compressão)
 
 Após a atualização da matriz *img* com os valores adequados, o programa lê os valores de *img* com tamanho de 8 bits (o que garante a cor em imagens coloridas) e transforma a matriz em uma imagem comprimida.
-
-## Teste da *compresss* para "sailor.png" (dimensões: 250x250)
-
-### Teste da *compresss* com k = 1 para "sailor.png"
-![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
-
-### Teste da *compresss* com k = 5 para "sailor.png"
-![sailor5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor5.png)
-
-### Teste da *compresss* com k = 10 para "sailor.png"
-![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
-
-## Teste da *compresss* para "nezuko.jpg" (dimensões: 1200x1200)
-
-### Teste da *compresss* com k = 10 para "nezuko.jpg"
-![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
-
-### Teste da *compresss* com k = 25 para "nezuko.jpg"
-![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
-
-### Teste da *compresss* com k = 10 para "nezuko.jpg"
-![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
 
 ## decompress
 
@@ -122,28 +90,6 @@ coisa de nerd
 
 A função *calculateError* lê as 6 matrizes correspondentes aos RGBs de *originalImg* e *decompressedImg* e calcula o erro, por meio da norma 2, entre a imagem original e a imagem que passou pelos processos de compressão, descompressão e interpolação. Para tanto, as matrizes originais, do tipo *uint8*, foram transformadas em tipo *double* (tipo suportado pela função embutida *norm* do Octave), sem alterações nos valores das matrizes.
 
-## Teste de *calculateError* para *"sailor.png"* (dimensões: 250x250)
-
-A imagem *"sailor.png"* tem dimensões $250\times 250$ e após comprimida e descomprimida com $k=1$, fica com dimensões $249\times 249$. Isso acontece pois, para $p=250$ e $k=1$, o $n$ calculado será $125.5$, ou seja, não inteiro. Logo, esse valor de $n$ faz com que a imagem descomprimida tenha dimensões diferentes da imagem original. 
-
-A função *calculateError* só consegue calcular o erro entre matrizes de mesma dimensão. Assim, é impossível calcular o erro para *"sailor.png"* com $k=1$.
-
-## Teste de *calculateError* para *"bokunohero.jpg"* (dimensões: 399x399)
-
-Valores de $k$ para os quais $n \in \mathbb{N}$: 1, 198, 397
-
-<li>Comprimida e descomprimida com k=1 &rarr; Erro = 0.032252<li\>
-<li>Comprimida e descomprimida com k=198 &rarr; Erro = 1.1329<li\>
-<li>Comprimida e descomprimida com k=397 &rarr; Erro = 1.3415<li\>
-
-## Teste de *calculateError* para *"nezuko.jpg"* (dimensões: 1200x1200)
-
-Valores de $k$ para os quais $n \in \mathbb{N}$: 10, 108, 1198
-
-<li>Comprimida e descomprimida com k=10 &rarr; Erro = 0.5040<li\>
-<li>Comprimida e descomprimida com k=108 &rarr; Erro = 1.9473<li\>
-<li>Comprimida e descomprimida com k=1198 &rarr; Erro = 4.1383<li\>
-
 ## O Zoológico
 
 Aqui usamos uma função $ f:\mathbb{R}^2 \to \mathbb{R}^3  $ de classe $ C^2 $ para gerar uma imagem grande em RGB. Segue alguns dos testes:
@@ -152,33 +98,121 @@ Aqui usamos uma função $ f:\mathbb{R}^2 \to \mathbb{R}^3  $ de classe $ C^2 $ 
 
 $$ f(x, y) = (sen(x),\frac{sen(y) + sen(x)}{2} , sen(x)) $$
 
-### Conclusões
+* Funciona bem para imagens preto e branco?
+* Funciona bem para imagens coloridas?
+* Funciona bem para todas as funções de classe $C^2$?
+* E para funções que não são de classe $C^2$?
+* Como o valor de $h$ muda a interpolação?
+* Como se comporta o erro?
 
-<li>Funciona bem para imagens preto e branco?<li\>
-<li>Funciona bem para imagens coloridas?<li\>
-<li>Funciona bem para todas as funções de classe C2?<li\>
-<li>E para funções que não são de classe C2?<li\>
-<li>Como o valor de h muda a interpolação?<li\>
-<li>Como se comporta o erro?<li\>
- 
-<li>Responder também:<li\>
-  
-*Considere uma imagem de tamanho p2. Comprima-a com k = 7. Para obter a descompressão, podemos
+Responda também a esta questão:
+Considere uma imagem de tamanho $p^2$. Comprima-a com k = 7. Para obter a descompressão, podemos
 rodar decompress com k = 7. Experimente alternativamente usar decompress três vezes com k = 1 nas
-três. Compare os resultados. Escreva no relatório suas conclusões.*
+três. Compare os resultados. Escreva no relatório suas conclusões.
 
 ## A Selva
 
 Aqui usamos uma imagem real (foto ou desenho) para testar o método de compressão (comprimir, descomprimir e calcular o erro).
 
-### Conclusões
-  
-<li>Funciona bem para imagens preto e branco?<li\>
-<li>Funciona bem para imagens coloridas?<li\>
-<li>Funciona bem para todas as funções de classe C2?<li\>
-<li>E para funções que não são de classe C2?<li\>
-<li>Como o valor de h muda a interpolação?<li\>
-<li>Como se comporta o erro?<li\>
+* Funciona bem para imagens preto e branco?
+* Funciona bem para imagens coloridas?
+* **Como o valor de $h$ muda a interpolação?** Quanto maior o $h$, mais nítida ficam as imagens interpoladas.
+* Como se comporta o erro?
+
+## Teste para "sailor.png" (dimensões: 250x250)
+
+### Original
+
+![sailor](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor.png)
+
+### *compress* com k = 1
+![sailor1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor1.png)
+
+### *compress* com k = 5
+![sailor5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor5.png)
+
+### *compress* com k = 10
+![sailor10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor10.png)
+
+### *decompress* com k = 1, método bilinear e h = 1
+![d_hanako1](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor/d_sailor1.png)
+
+### *decompress* com k = 5, método bilinear e h = 1
+![d_hanako5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor/d_sailor5.png)
+
+### *decompress* com k = 10, método bilinear e h = 1
+![d_hanako15](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/sailor/d_sailor15.png)
+
+### *calculateError*
+
+A imagem *"sailor.png"* tem dimensões $250\times 250$ e após comprimida e descomprimida com $k=1$, fica com dimensões $249\times 249$. Isso acontece pois, para $p=250$ e $k=1$, o $n$ calculado será $125.5$, ou seja, não inteiro. Logo, esse valor de $n$ faz com que a imagem descomprimida tenha dimensões diferentes da imagem original. 
+
+A função *calculateError* só consegue calcular o erro entre matrizes de mesma dimensão. Assim, é impossível calcular o erro para *"sailor.png"* com $k=1$.
+
+## Teste para "hanako.jpg" (dimensões: 433x433)
+
+### Original
+
+![hanako](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/hanako.jpg)
+
+### *compress* com k = 5
+![hanako5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/c_hanako5.png)
+
+### *compress* com k = 15
+![hanako15](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/c_hanako15.png)
+
+### *compress* com k = 35
+![hanako35](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/c_hanako35.png)
+
+### *decompress* com k = 5, método bilinear e h = 1
+![hanako5](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/d_hanako5.png)
+
+### *decompress* com k = 15, método bilinear e h = 1
+![hanako15](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/d_hanako15.png)
+
+### *decompress* com k = 35, método bilinear e h = 1
+![hanako35](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/hanako/d_hanako35.png)
+
+### *calculateError*
+
+(Todos os valores de $k$ foram escolhidos de forma que $n \in \mathbb{N}$.)
+
+* Comprimida e descomprimida com k=5 &rarr; Erro = 0.2727
+* Comprimida e descomprimida com k=15 &rarr; Erro = 0.6539
+* Comprimida e descomprimida com k=35 &rarr; Erro = 0.9531
+
+## Teste para "nezuko.jpg" (dimensões: 1200x1200)
+
+### Original
+
+![sailor](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko.jpg)
+
+### *compress* com k = 10
+![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
+
+### *compress* com k = 25
+![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
+
+### *compress* com k = 10
+![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
+
+### *calculateError*
+
+(Todos os valores de $k$ foram escolhidos de forma que $n \in \mathbb{N}$.)
+
+* Comprimida e descomprimida com k=10 &rarr; Erro = 0.5040
+* Comprimida e descomprimida com k=108 &rarr; Erro = 1.9473
+* Comprimida e descomprimida com k=1198 &rarr; Erro = 4.1383
+
+## Teste para "bokunohero.jpg" (dimensões: 399x399)
+
+### *calculateError* 
+
+Valores de $k$ para os quais $n \in \mathbb{N}$: 1, 198, 397
+
+* Comprimida e descomprimida com k=1 &rarr; Erro = 0.032252
+* Comprimida e descomprimida com k=198 &rarr; Erro = 1.1329
+* Comprimida e descomprimida com k=397 &rarr; Erro = 1.3415
 
 [^1]: $p=n+(n-1)k$
 [^2]: Os valores da matriz são todos iguais a $-1$ para facilitar o processo de interpolação: o sistema RGB é representado por números de 0 até 255; logo, os pontos a serem interpolados não podem estar nesse intervalo para evitar interpolações desnecessárias.
