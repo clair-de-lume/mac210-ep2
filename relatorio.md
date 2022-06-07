@@ -114,9 +114,15 @@ A função *calculateError* lê as 6 matrizes correspondentes aos RGBs de *origi
 
 ## O Zoológico
 
-Aqui usamos uma função $ f:\mathbb{R}^2 \to \mathbb{R}^3  $ de classe $ C^2 $ para gerar uma imagem grande em RGB. Segue alguns dos testes:
+Aqui usamos uma função $ f:\mathbb{R}^2 \to \mathbb{R}^3  $ de classe $ C^2 $ para gerar uma imagem grande em RGB.
 
-### Teste 1.
+* **Funciona bem para imagens preto e branco? Funciona bem para imagens coloridas?** A olho nu, a diferença entre a imagem original e a interpolada é quase imperceptível, tanto para imagens preto e branco quanto para imagens coloridas. Logo, para imagens geradas por funções do tipo $ f:\mathbb{R}^2 \to \mathbb{R}^3  $ de classe $ C^2 $, o código funciona bem.
+* **Funciona bem para todas as funções de classe $C^2$?** Sim.
+* **E para funções que não são de classe $C^2$?** Sim.
+* **Como o valor de $h$ muda a interpolação?** A olho nu, o valor de $h$ não parece ter efeito na interpolação da imagem. Para melhor analisá-lo, é preciso analisar o erro.
+* **Como se comporta o erro?** Para $h \in \mathbb{N}=1, 2, 3...$, temos que há um erro mínimo, o qual está, geralmente, vinculado a um $h$ baixo (ex.: *"c2.png"* com  $k=1$, $h=3$ e método bilinear ou *"c2.png"* com $k=1$, $h=2$ e método bicúbico). Além disso, valor do erro diminui até chegar em $h_{min}$ e volta a crescer após passsar por $h_{min}$.
+
+### Teste 1 (função do enunciado do EP2).
 
 $$ f(x, y) = (sen(x),\frac{sen(y) + sen(x)}{2} , sen(x)) $$
 
@@ -141,23 +147,7 @@ $$ f(x, y) = (sen(x),\frac{sen(y) + sen(x)}{2} , sen(x)) $$
 ### *decompress com h = 5, método bicúbico*
 ![pdf7](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_bicubica_h5_decompressed.png)
 
-### Teste 2 (imagem em preto e branco)
-
-$$ f(x, y) = (sen(2.069\times 10^{-3}x) , sen(2.069\times 10^{-3}x) , sen(2.069\times 10^{-3}x)) $$
-
-### Original
-![https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf.png](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb.png)
-
-### *compress com método bilinear*
-![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_compressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_compressed.png)
-
-### *decompress com h= 1, método bilinear*
-![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_decompressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_decompressed.png)
-
-### *decompress com h = 1, método bicúbico*
-![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_bicubica_decompressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_bicubica_decompressed.png)
-
-### Teste 3 (função $C^1$)
+### Teste 2 (função C^1)
 
 $$ f(x,y) = (\frac{256x}{280}, \frac{256y}{280}, \frac{256x}{280}) $$
 
@@ -173,14 +163,68 @@ $$ f(x,y) = (\frac{256x}{280}, \frac{256y}{280}, \frac{256x}{280}) $$
 ### *decompress com h = 1, método bicúbico*
 ![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_bicubica_decompressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c1_bicubica_decompressed.png)
 
+### Teste 3 (função C^2)
 
-* Funciona bem para imagens preto e branco?
-* Funciona bem para imagens coloridas?
-* Funciona bem para todas as funções de classe $C^2$?
-* E para funções que não são de classe $C^2$?
-* Como o valor de $h$ muda a interpolação?
-* Como se comporta o erro?
-* 
+$$ f(x,y) = (\frac{y^5*\sin{xk}}{x^3+xy^2} , \frac{y^5*\sin{xk}}{x^3+xy^2} , \frac{x^5*\sin{yk}}{x^3+xy^2})
+
+em que $k=2.069\times 10^{-8}$.
+
+### Original ("c2.png")
+![c2](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c2.png)
+
+### *compress* com k=1
+![c21](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c2_compress_k1.png)
+
+### *decompress* com k=1, método bilinear e h=1
+![c22](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c2_decompress_bl_k1_h1.png)
+
+### *decompress* com k=1, método bilinear e h=3
+![c23](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c2_decompress_bl_k1_h3.png)
+
+### *decompress* com k=1, método bilinear e h=7
+![c24](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c2_decompress_bl_k1_h7.png)
+
+### *decompress* com k=1, método bicúbico e h=1
+![c25](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c2_decompress_bc_k1_h1.png)
+
+### *decompress* com k=1, método bicúbico e h=2
+![c26](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c2_decompress_bc_k1_h2.png)
+
+### *decompress* com k=1, método bicúbico e h=3
+![c27](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c2_decompress_bc_k1_h3.png)
+
+### *calculateError*
+
+**Para o método bilinear (k=1):**
+
+* h = 1 &rarr; Erro = 0.0081111
+* h = 3 &rarr; Erro = 0.0027650
+* h = 5 &rarr; Erro = 0.0053125
+* h = 7 &rarr; Erro = 0.0063754
+
+**Para o método bicúbico (k=1):**
+
+* h = 1 &rarr; Erro = 0.0081553
+* h = 2 &rarr; Erro = 0.0010551
+* h = 3 &rarr; Erro = 0.007891
+* h = 5 &rarr; Erro = 0.020304
+
+### Teste 4 (função de imagem em preto e branco).
+
+$$ f(x, y) = (sen(2.069\times 10^{-3}x) , sen(2.069\times 10^{-3}x) , sen(2.069\times 10^{-3}x)) $$
+
+### Original
+![https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf.png](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb.png)
+
+### *compress com método bilinear*
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_compressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_compressed.png)
+
+### *decompress com h= 1, método bilinear*
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_decompressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_decompressed.png)
+
+### *decompress com h = 1, método bicúbico*
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_bicubica_decompressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_bicubica_decompressed.png)
+
 ## Considere uma imagem de tamanho $p^2$. Comprima-a com k = 7. Para obter a descompressão, podemos rodar decompress com k = 7. Experimente alternativamente usar decompress três vezes com k = 1 nas três. Compare os resultados. Escreva no relatório suas conclusões.
 
 ### *compress* com k = 7
@@ -203,10 +247,10 @@ $$ f(x,y) = (\frac{256x}{280}, \frac{256y}{280}, \frac{256x}{280}) $$
 Aqui usamos uma imagem real (foto ou desenho) para testar o método de compressão (comprimir, descomprimir e calcular o erro).
 
 * Funciona bem para imagens preto e branco?
-* Funciona bem para imagens coloridas?
-* Como o valor de $h$ muda a interpolação?
-* Como se comporta o erro?
-
+* **Funciona bem para imagens coloridas?** O método bilinear com os valores ótimos de $k$ e $h$ produz imagens semelhantes à original, mas levemente quadriculadas. Similarmente, o método bicúbico também produz imagens parecida com a original, porém menos nítidas ("borradas").
+* **Como o valor de $h$ muda a interpolação?** Para a maioria dos casos, quanto maior o valor de $h$, melhor fica a qualidade da imagem interpolada, principalmente se ela tiver sido comprimida e descomprimida com valores mais elevados de $k$.  
+* **Como se comporta o erro?** Para $h \in \mathbb{N}=1, 2, 3...$, temos que há um erro mínimo, o qual pode estar em um $h$ baixo (ex.: *"hanako.jpg"* com  $k=1$, $h=1$ e método bicúbico) ou em um valor de $h$ mais elevado (ex.: *"hanako.jpg"* com $k=5$, $h=7$ e método bilinear). Para ambos os casos, o valor do erro diminui até chegar em $h_{min}$ e volta a crescer após passsar por $h_{min}$.
+* 
 ## Teste para "sailor.png" (dimensões: 250x250)
 
 ### Original
