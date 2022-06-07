@@ -120,6 +120,60 @@ Aqui usamos uma função $ f:\mathbb{R}^2 \to \mathbb{R}^3  $ de classe $ C^2 $ 
 
 $$ f(x, y) = (sen(x),\frac{sen(y) + sen(x)}{2} , sen(x)) $$
 
+### Original
+![pdf1](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf.png)
+
+### *compress com método bilinear*
+![pdf2](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_compressed.png)
+
+### *decompress com h= 1, método bilinear*
+![pdf3](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_decompressed.png)
+
+### *decompress com h = 5, método bilinear*
+![pdf4](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_h5_decompressed.png)
+
+### *decompress com h = 1, método bicúbico*
+![pdf5](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_bicubica_decompressed.png)
+
+### *decompress com h = 2, método bicúbico*
+![pdf6](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_bicubica_h2_decompressed.png)
+
+### *decompress com h = 5, método bicúbico*
+![pdf7](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_bicubica_h5_decompressed.png)
+
+### Teste 2 (imagem em preto e branco)
+
+$$ f(x, y) = (sen(2.069\times 10^{-3}x) , sen(2.069\times 10^{-3}x) , sen(2.069\times 10^{-3}x)) $$
+
+### Original
+![https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf.png](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb.png)
+
+### *compress com método bilinear*
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_compressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_compressed.png)
+
+### *decompress com h= 1, método bilinear*
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_decompressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_decompressed.png)
+
+### *decompress com h = 1, método bicúbico*
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/pdf_bicubica_decompressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_bicubica_decompressed.png)
+
+### Teste 3 (função $C^1$)
+
+$$ f(x,y) = (\frac{256x}{280}, \frac{256y}{280}, \frac{256x}{280}) $$
+
+### Original
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c1.png)
+
+### *compress com método bilinear*
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_compressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c1_compressed.png)
+
+### *decompress com h= 1, método bilinear*
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_decompressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c1_decompressed.png)
+
+### *decompress com h = 1, método bicúbico*
+![(https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/peb_bicubica_decompressed.png)](https://github.com/clair-de-lume/mac210-ep2/blob/main/zoologico/c1_bicubica_decompressed.png)
+
+
 * Funciona bem para imagens preto e branco?
 * Funciona bem para imagens coloridas?
 * Funciona bem para todas as funções de classe $C^2$?
