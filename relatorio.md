@@ -49,7 +49,7 @@ Após a atualização da matriz *img* com os valores adequados, o programa lê o
 
 ###  Interpolação Bilinear Por Partes
 
-Se $method==1$, o método selecionado para interpolação será o bilinear. Para cada ponto $(x,y)$ a ser interpolado na matriz *img*, devemos calcular o valor $f(x, y) \approx p_{ij}(x, y) = a_0 + a_1(x − x_i) + a_2(y − y_j) + a_3(x − x_i)(y − y_j)$, de acordo com o seguinte sistema linear:
+Se method == "bilinear", o método selecionado para interpolação será o bilinear. Para cada ponto $(x,y)$ a ser interpolado na matriz *img*, devemos calcular o valor $f(x, y) \approx p_{ij}(x, y) = a_0 + a_1(x − x_i) + a_2(y − y_j) + a_3(x − x_i)(y − y_j)$, de acordo com o seguinte sistema linear:
 
 $$
 F = H \times A
@@ -80,7 +80,29 @@ A matriz F representa os pontos nas diagonais do ponto $(x,y)$ que receberá o v
 
 ###  Interpolação Bicubica
 
-coisa de nerd
+Se *method == "bicubica"*, o método selecionado será o bicúbico. Inicializamos a matriz H, em que: 
+
+$$ 
+H =
+\begin{bmatrix}
+   1\ 0\ 0\ 0 \\
+   1\ h\ h^2\ h^3 \\
+   0\ 1\ 0\ 0 \\
+   0\ 1\ 2h\ 3h^2
+\end{bmatrix}
+$$
+
+Após isso, temos a variável HT = inversa da transposta de H e guardamos a inversa de H na própria variável H. Para cada ponto de *img*, inicializamos a matriz nula F de dimensões $4\times 4\times 3$ para guardamos as derivadas primeiras e a derivada mista para cada ponto de *img*.
+
+Para calcular as derivadas, utilizamos as funções auxiliares *dx* e *dy* para as derivadas primeiras, e *dxdy* para a derivada mista. As funções auxiliares calculam as derivadas para os casos gerais e os de borda ($x=1$ ou $x=p$) e recebem como parâmetros:
+
+* *img*: matriz em que os pontos serão interpoladas
+* $x$: coordenada do eixo das abscissas de *img* na iteração atual
+* $y$: coordenada do eixo das ordenadas de *img* na iteração atual
+* $h$: tamanho do lado do quadrado interpolar (conforme especificado no enunciado)
+* $p$: tamanho do lado de *img*
+
+Após isso, efetuamos a operação A = H $\times$ F $\times$ HT, em que A representa a matriz que guarda os índices do polinômio interpolador bicúbico. Após descobrirmos os índices necessários, interpolamos cada ponto do quadrado cujo valor é $-1$ e atualizamos na matrix *img*.
 
 ## calculateError
 
@@ -128,7 +150,7 @@ Aqui usamos uma imagem real (foto ou desenho) para testar o método de compress�
 
 * Funciona bem para imagens preto e branco?
 * Funciona bem para imagens coloridas?
-* **Como o valor de $h$ muda a interpolação?** Quanto maior o $h$, mais nítida ficam as imagens interpoladas.
+* Como o valor de $h$ muda a interpolação?
 * Como se comporta o erro?
 
 ## Teste para "sailor.png" (dimensões: 250x250)
@@ -187,44 +209,40 @@ A função *calculateError* só consegue calcular o erro entre matrizes de mesma
 
 ### *calculateError*
 
-(Todos os valores de $k$ foram escolhidos de forma que $n \in \mathbb{N}$.)
+**Para o método bilinear (k=1):**
 
-* Comprimida e descomprimida com k=5 &rarr; Erro = 0.2727
-* Comprimida e descomprimida com k=15 &rarr; Erro = 0.6539
-* Comprimida e descomprimida com k=35 &rarr; Erro = 0.9531
+* h = 1 &rarr; Erro = 0.027129
+* h = 2 &rarr; Erro = 0.013400 (mais próxima à original)
+* h = 3 &rarr; Erro = 0.014682
+* h = 4 &rarr; Erro = 0.016445
+* h = 5 &rarr; Erro = 0.018047
+* h = 6 &rarr; Erro = 0.019360
 
-## Teste para "nezuko.jpg" (dimensões: 1200x1200)
+**Para o método bicúbico (k=1):**
 
-### Original
+* h = 1 &rarr; Erro = 0.060446 (mais próxima à imagem original)
+* h = 2 &rarr; Erro = 0.015471
+* h = 3 &rarr; Erro = 0.027059
+* h = 4 &rarr; Erro = 0.044575
 
-![sailor](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko.jpg)
+**Para o método bilinear (k=5):**
 
-### *compress* com k = 10
-![nezuko10](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko10.png)
+* h = 1 &rarr; Erro = 0.2727
+* h = 2 &rarr; Erro = 0.1201
+* h = 3 &rarr; Erro = 0.069187
+* h = 6 &rarr; Erro = 0.034401
+* h = 7 &rarr; Erro = 0.033610 (mais próxima à original)
+* h = 8 &rarr; Erro = 0.033981
+* h = 10 &rarr; Erro = 0.036429
 
-### *compress* com k = 25
-![nezuko25](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko25.png)
+**Para o método bicúbico (k=5):**
 
-### *compress* com k = 10
-![nezuko100](https://github.com/clair-de-lume/mac210-ep2/blob/main/imagens/nezuko100.png)
-
-### *calculateError*
-
-(Todos os valores de $k$ foram escolhidos de forma que $n \in \mathbb{N}$.)
-
-* Comprimida e descomprimida com k=10 &rarr; Erro = 0.5040
-* Comprimida e descomprimida com k=108 &rarr; Erro = 1.9473
-* Comprimida e descomprimida com k=1198 &rarr; Erro = 4.1383
-
-## Teste para "bokunohero.jpg" (dimensões: 399x399)
-
-### *calculateError* 
-
-Valores de $k$ para os quais $n \in \mathbb{N}$: 1, 198, 397
-
-* Comprimida e descomprimida com k=1 &rarr; Erro = 0.032252
-* Comprimida e descomprimida com k=198 &rarr; Erro = 1.1329
-* Comprimida e descomprimida com k=397 &rarr; Erro = 1.3415
+* h = 1 &rarr; Erro = 0.6270
+* h = 2 &rarr; Erro = 0.4830
+* h = 3 &rarr; Erro = 0.3619
+* h = 6 &rarr; Erro = 0.2697 (mais próxima à original)
+* h = 7 &rarr; Erro = 0.4080
+* h = 8 &rarr; Erro = 0.4941
 
 [^1]: $p=n+(n-1)k$
 [^2]: Os valores da matriz são todos iguais a $-1$ para facilitar o processo de interpolação: o sistema RGB é representado por números de 0 até 255; logo, os pontos a serem interpolados não podem estar nesse intervalo para evitar interpolações desnecessárias.
